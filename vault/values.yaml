@@ -1,0 +1,22 @@
+replicaCount: 1
+image:
+  repository: hashicorp/vault
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: LoadBalancer
+  port: 8200
+
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: vault.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 1Gi
